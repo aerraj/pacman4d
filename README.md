@@ -1,5 +1,5 @@
 # PACMAN 4D
-
+URL : https://pacman4d.vercel.app/
 ## Abstract
 
 We report a reproducible maze experiment in which four spectral agents obey a deliberately playful approximation of quantum mechanics. The player acts as both subject and observer: a clear line of sight collapses a probability cloud into a deterministic, faster pursuer. The experiment runs entirely in the browser on a fixed 60 Hz simulation loop, requires no backend, and exposes its live state through an instrumentation panel.
