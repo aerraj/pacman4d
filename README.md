@@ -21,6 +21,12 @@ The maze contains two parallel manifolds, Brane A and Brane B. Photons must be c
 
 The observation field is a 90° cone aligned with the player’s current direction. Maze barriers occlude it. A power pellet is treated as measurement apparatus: it forces all ghosts into a frightened, decohered state for 8 s. Quantum assignments rotate every 30 s.
 
+### Adaptive tactical system
+
+Every 750 ms, the engine serializes player, ghost, trajectory, state, and reserve information into a live JSON telemetry packet and parses it through a tactical evaluator. The evaluator projects each ghost’s next four tile steps, weights the projection by quantum state, penalizes low-exit corridors, and creates a normalized trajectory-threat score.
+
+When threat rises, the resource allocator moves a larger share of its 100-point budget toward defense and spends reserves on temporary lattice barriers at predicted breach coordinates. At lower threat, resources return to offense, increasing movement efficiency and photon/ghost score yield. Following a collision, every viable maze coordinate is evaluated for predicted damage, escape routes, nearby resources, and travel cost; the minimum-cost coordinate becomes the next spawn point.
+
 ## 3. Controls
 
 - Arrow keys or `WASD`: move
@@ -36,6 +42,8 @@ Each run displays and stores its integer seed in the URL as `?seed=...`. Opening
 ## 5. Implementation
 
 The interface uses React, TypeScript, and a Canvas renderer. Simulation and rendering are isolated in `src/game`; quantum constants live in `src/quantum/physics.ts`. Audio is synthesized with Web Audio and ships with no media payload. EB Garamond and JetBrains Mono are self-hosted.
+
+Production: [pacman4d.vercel.app](https://pacman4d.vercel.app)
 
 ## References
 
